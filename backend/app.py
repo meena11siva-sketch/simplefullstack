@@ -9,7 +9,7 @@ CORS(app)
 def home():
     return jsonify({"status": "Backend is running"})
 
-@app.route("/message", methods=["POST"])
+@app.route("https://simplebackend-d6gs.onrender.com/message", methods=["POST"])
 def message():
     data = request.get_json(silent=True) or {}
     name = data.get("name", "Guest")
