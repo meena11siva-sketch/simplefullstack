@@ -16,23 +16,32 @@
     <h3 id="result"></h3>
 
     <script>
-        async function sendData() {
-            const name = document.getElementById("username").value;
+        
+          async function sendData() {
+    const name = document.getElementById("username").value;
 
-            const response = await fetch(
-                "BACKEND_URL/message",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({name: name})
-                }
-            );
+    try {
+        const response = await fetch(
+            "https://your-backend-name.onrender.com/message",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name: name })
+            }
+        );
 
-            const data = await response.json();
+        const data = await response.json();
 
-            document.getElementById("result").innerText = data.message;
+        document.getElementById("result").innerText =
+            data.message;
+
+    } catch (error) {
+        document.getElementById("result").innerText =
+            "Backend connection failed: " + error.message;
+    }
+} 
         }
     </script>
 </body>
