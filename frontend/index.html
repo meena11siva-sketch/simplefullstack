@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Full Stack App</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+
+    <input type="text" id="username" placeholder="Enter your name">
+
+    <button onclick="sendData()">Submit</button>
+
+    <h3 id="result"></h3>
+
+    <script>
+        async function sendData() {
+            const name = document.getElementById("username").value;
+
+            const response = await fetch(
+                "BACKEND_URL/message",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({name: name})
+                }
+            );
+
+            const data = await response.json();
+
+            document.getElementById("result").innerText = data.message;
+        }
+    </script>
+</body>
+</html>
